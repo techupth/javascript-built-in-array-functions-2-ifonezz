@@ -374,4 +374,31 @@ const bills = [
 ];
 
 // Start coding here
-const totalMembers;
+
+function getNewBillsWithMember(bills) {
+  return bills.filter((bill) => {
+    return bill.member != null;
+  });
+}
+
+function getNameOfMemberInBills(bills) {
+  let newBills = getNewBillsWithMember(bills);
+  return newBills.map((bill) => {
+    return bill.member.name;
+  });
+}
+
+function countUniqueMembers(bills) {
+  let billMembers = getNameOfMemberInBills(bills);
+  let countMembers = 0;
+  billMembers.reduce((acc,name) => {
+    if(acc[name] === undefined) {
+      countMembers += 1;
+    }
+    acc[name] = name;
+    return acc;
+  },{});
+  return countMembers
+}
+const totalMembers = countUniqueMembers(bills);
+console.log(`Unique Members Count: ${totalMembers}`);
