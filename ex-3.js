@@ -374,4 +374,17 @@ const bills = [
 ];
 
 // Start coding here
-const billMembers;
+function getNewBillsWithMember(bills) {
+  return bills.filter((bill) => {
+    return bill.member != null;
+  });
+}
+
+function getNameOfMemberInBills(bills) {
+  let newBills = getNewBillsWithMember(bills);
+  return newBills.map((bill) => {
+    return bill.member.name;
+  });
+}
+const billMembers = getNameOfMemberInBills(bills);
+console.log(billMembers);

@@ -374,5 +374,21 @@ const bills = [
 ];
 
 // Start coding here
+function getTotalPriceByProvince(bills) {
+    let totalPriceByProvince = {};
+    bills.map((bill) => {
+        if(totalPriceByProvince[bill.location] === undefined){
+            totalPriceByProvince[bill.location] = bill.total;
+        } else {
+            for(let province in totalPriceByProvince){
+                if(province === bill.location) {
+                    totalPriceByProvince[bill.location] = totalPriceByProvince[bill.location] + bill.total;
+                }
+            }
+        }
+        return totalPriceByProvince;
+    });
+    console.log(totalPriceByProvince)
+}
 
-const totalPaidByLocation;
+const totalPaidByLocation = getTotalPriceByProvince(bills);
